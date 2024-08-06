@@ -1,4 +1,4 @@
-// DSA Lab Assignment1: LinkedList
+//DSA Assignment1: LinekdList
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +15,7 @@ void displayList(Node* head);
 void reverseList(Node** head);
 int searchNode(Node* head, int value);
 void menu();
+void createListFromUserInput(Node** head);
 
 // Main function
 int main() {
@@ -53,6 +54,9 @@ int main() {
                     printf("Value not found in the list.\n");
                 }
                 break;
+            case 7:
+                createListFromUserInput(&head);
+                break;
             case 6:
                 printf("Exiting the program.\n");
                 break;
@@ -74,6 +78,7 @@ void menu() {
     printf("4. Reverse the list\n");
     printf("5. Search for a node\n");
     printf("6. Exit the program\n");
+    printf("7. Create a linked list from user input\n");
 }
 
 // Insert a new node with the given value at the end of the linked list
@@ -163,3 +168,20 @@ int searchNode(Node* head, int value) {
     return -1; // Value not found
 }
 
+// Create a linked list from user input
+void createListFromUserInput(Node** head) {
+    int numNodes, value;
+    printf("Enter the number of nodes: ");
+    scanf("%d", &numNodes);
+
+    if (numNodes <= 0) {
+        printf("Invalid number of nodes.\n");
+        return;
+    }
+
+    for (int i = 0; i < numNodes; i++) {
+        printf("Enter value for node %d: ", i + 1);
+        scanf("%d", &value);
+        insertNode(head, value);
+    }
+}
