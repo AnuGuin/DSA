@@ -14,8 +14,8 @@ void deleteNode(Node** head, int value);
 void displayList(Node* head);
 void reverseList(Node** head);
 int searchNode(Node* head, int value);
-void menu();
 void createListFromUserInput(Node** head);
+void menu();
 
 // Main function
 int main() {
