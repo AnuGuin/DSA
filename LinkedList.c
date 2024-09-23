@@ -165,7 +165,7 @@ int searchNode(Node* head, int value) {
         val++;
     }
 
-    return -1; // Value not found
+    return -999; // Value not found
 }
 
 // Create a linked list from user input
