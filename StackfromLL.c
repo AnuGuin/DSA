@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the stackNode structure
-struct stackNode {
+// Define the stackNode structure using typedef
+typedef struct stackNode {
     int data;
     struct stackNode* next;
-};
+} StackNode;
 
 // Function to push an element into the stack
-void stackPush(struct stackNode** top, int x) {
-    struct stackNode* element = (struct stackNode*)malloc(sizeof(struct stackNode));
+void stackPush(StackNode** top, int x) {
+    StackNode* element = (StackNode*)malloc(sizeof(StackNode));
     element->data = x;
     element->next = *top;
     *top = element;
@@ -17,13 +17,13 @@ void stackPush(struct stackNode** top, int x) {
 }
 
 // Function to pop an element from the stack
-int stackPop(struct stackNode** top) {
+int stackPop(StackNode** top) {
     if (*top == NULL) {
         printf("Stack is empty.\n");
         return -1;
     }
     int topData = (*top)->data;
-    struct stackNode* temp = *top;
+    StackNode* temp = *top;
     *top = (*top)->next;
     free(temp);
     printf("Popped element: %d\n", topData);
@@ -31,12 +31,12 @@ int stackPop(struct stackNode** top) {
 }
 
 // Function to check if the stack is empty
-int stackIsEmpty(struct stackNode* top) {
+int stackIsEmpty(StackNode* top) {
     return top == NULL;
 }
 
 // Function to peek the top element of the stack
-int stackPeek(struct stackNode* top) {
+int stackPeek(StackNode* top) {
     if (top == NULL) {
         printf("Stack is empty.\n");
         return -1;
@@ -45,16 +45,15 @@ int stackPeek(struct stackNode* top) {
 }
 
 // Function to print the elements of the stack
-void printStack(struct stackNode* top) {
+void printStack(StackNode* top) {
     if (top == NULL) {
         printf("Stack is empty.\n");
         return;
     }
-    struct stackNode* current = top;
     printf("Stack elements: ");
-    while (current != NULL) {
-        printf("%d ", current->data);
-        current = current->next;
+    while (top != NULL) {
+        printf("%d ", top->data);
+        top = top->next;
     }
     printf("\n");
 }
@@ -72,7 +71,7 @@ void displayMenu() {
 }
 
 int main() {
-    struct stackNode* top = NULL;  // Stack initialized to be empty
+    StackNode* top = NULL;  // Stack initialized to be empty
     int choice, value;
 
     do {
@@ -111,6 +110,13 @@ int main() {
                 printf("Invalid choice, please try again.\n");
         }
     } while (choice != 6);
+
+    // Free memory for remaining stack nodes
+    while (top != NULL) {
+        StackNode* temp = top;
+        top = top->next;
+        free(temp);
+    }
 
     return 0;
 }
