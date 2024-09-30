@@ -1,24 +1,17 @@
 #include <stdio.h>
-
 #define MAX_SIZE 5
-
 int queue[MAX_SIZE];
 int front = -1;
 int rear = -1;
-
-// Function to check if the queue is empty
 int isEmpty()
 {
     return (front == -1);
 }
-
-// Function to check if the queue is full
 int isFull()
 {
     return ((rear + 1) % MAX_SIZE == front);
 }
 
-// Function to add an element to the circular queue (enqueue)
 void enqueue(int element)
 {
     if (isFull())
@@ -37,7 +30,6 @@ void enqueue(int element)
     printf("%d enqueued to the queue.\n", element);
 }
 
-// Function to remove an element from the circular queue (dequeue)
 int dequeue()
 {
     if (isEmpty())
@@ -61,7 +53,6 @@ int dequeue()
     return dequeuedElement;
 }
 
-// Function to display the elements of the circular queue
 void display()
 {
     if (isEmpty())
